@@ -1,0 +1,11 @@
+body {
+  margin: 0; }
+
+.mainWindowPane {
+  float: left;
+  height: 100vh;
+  width: 33%; }
+
+.editorFrame {
+  width: 100%;
+  height: 100%; }

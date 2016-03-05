@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "test": "npm start runTests",
-    "start": "electron ."
+    "start": "node-sass ./src/styles/main.scss ./src/styles/main.css && electron ."
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
   "devDependencies": {
     "electron-prebuilt": "^0.36.9",
     "qunitjs": "^1.22.0"
+  },
+  "dependencies": {
+    "jquery": "^2.2.1"
   }
 }

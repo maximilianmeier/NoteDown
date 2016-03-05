@@ -3,6 +3,8 @@ const app = require('app');
 const BrowserWindow = require('browser-window');
 const myApp = require('./app.js');
 const Logger = require('./util/logger.js');
+const fileManager = require('./file-manager.js');
+const fs = require('fs');
 const Menu = electron.Menu;
 var testMode = false;
 
@@ -34,7 +36,7 @@ if (testMode === true) {
         accelerator: 'CmdOrCtrl+N',
         click: function(item, focusedWindow) {
           Logger.info('Want to create a new Note!');
-          Logger.error('NYI!');
+          fileManager.createNewMarkdownFile("test");
         }
       }, {
         label: 'New Notebook',

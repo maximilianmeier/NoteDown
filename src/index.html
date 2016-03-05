@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hi</title>
-  </head>
-  <body>
-    Hi!
-    <script>
-      require('./app.js');
-    </script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>NoteDown</title>
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+
+<body>
+  <script type="text/javascript">
+    require('./directory.js');
+    require('./editor.js');
+  </script>
+  <div class="mainWindowPane">
+    <div class="">
+      Files
+    </div>
+    <div class="fileList">
+
+    </div>
+  </div>
+  <div class="mainWindowPane">
+    <div class="">
+      Preview
+    </div>
+    <div class="previewFrame">
+
+    </div>
+  </div>
+  <div class="mainWindowPane">
+    <div class="">
+      Editor
+    </div>
+    <textarea class="editorFrame" name="name" rows="8" cols="40"></textarea>
+  </div>
+</body>
+
 </html>
