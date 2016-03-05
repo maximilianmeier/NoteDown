@@ -23,6 +23,9 @@ $(document).ready(function() {
 });
 
 function updateFileList(files) {
+  if (files === undefined) {
+    return;
+  }
   var htmlToAppend = "";
   files.forEach(function(file, index, array) {
     htmlToAppend += "<div class='fileElement'>" + file + "</div>";
