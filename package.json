@@ -4,7 +4,7 @@
   "description": "NoteDown is a markdown developer notebook",
   "main": "src/main.js",
   "scripts": {
-    "test": "npm test",
+    "test": "npm start runTests",
     "start": "electron ."
   },
   "repository": {
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Ceany/NoteDown#readme",
   "devDependencies": {
-    "electron-prebuilt": "^0.36.9"
+    "electron-prebuilt": "^0.36.9",
+    "qunitjs": "^1.22.0"
   }
 }
