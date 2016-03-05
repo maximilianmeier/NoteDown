@@ -10,6 +10,14 @@ The npm "qunit-cli" is also required.
 npm install qunit-cli -g
 ```
 
+```shell
+npm install electron-prebuilt -g
+```
+
+```shell
+npm install node-sass -g
+```
+
 ## Install
 
 Run the following command to install necessary dependencies.
