@@ -1,0 +1,28 @@
+{
+  "name": "notedown",
+  "version": "1.0.0",
+  "description": "NoteDown is a markdown developer notebook",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ceany/NoteDown.git"
+  },
+  "keywords": [
+    "markdown",
+    "notebook",
+    "developer"
+  ],
+  "author": "Maximilian Meier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ceany/NoteDown/issues"
+  },
+  "homepage": "https://github.com/Ceany/NoteDown#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.9"
+  }
+}
