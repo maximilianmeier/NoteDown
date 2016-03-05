@@ -5,10 +5,8 @@ node_js:
 sudo: false
 
 install:
-  - npm install -g bower
   - npm install -g qunit-cli
   - npm install
-  - bower install
 
 script:
   - qunit-cli ./test/tests.js
