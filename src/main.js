@@ -35,7 +35,7 @@ if (process.platform == 'darwin') {
   global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '/Documents/NoteDown';
   //Constants.defineGlobal("STANDARD_FILE_PATH","/Users/MaxiMac/Documents/NoteDown/");
 } else if (process.platform = 'win32') {
-  global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '/Documents/NoteDown';
+  global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '\\Documents\\NoteDown';
 }
 
 if (testMode === true) {
