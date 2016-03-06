@@ -4,6 +4,7 @@ const BrowserWindow = require('browser-window');
 const myApp = require('./app.js');
 const Logger = require('./util/logger.js');
 const fileManager = require('./file-manager.js');
+const Constants = require('./util/constants.js');
 const fs = require('fs');
 const Menu = electron.Menu;
 var testMode = false;
@@ -15,6 +16,27 @@ arguments.forEach(function(val, index, array) {
     Logger.info('Start running tests!');
   }
 });
+
+try {
+  var settingsFile = JSON.parse(fs.readFileSync(app.getAppPath() + '/settings.json', 'utf-8'));
+  global.basicSettings = settingsFile;
+  updateSettings();
+} catch (e) {
+  var basicSettings = {
+  };
+  fs.writeFileSync(app.getAppPath() + '/settings.json', JSON.stringify(basicSettings), 'utf-8');
+  global.settingsFile = basicSettings;
+  updateSettings();
+}
+
+console.log(app.getPath('home'));
+
+if (process.platform == 'darwin') {
+  global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '/Documents/NoteDown';
+  //Constants.defineGlobal("STANDARD_FILE_PATH","/Users/MaxiMac/Documents/NoteDown/");
+} else if (process.platform = 'win32') {
+  global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '/Documents/NoteDown';
+}
 
 if (testMode === true) {
   Logger.info("start testing");
@@ -192,3 +214,31 @@ if (testMode === true) {
     mainWindow.loadURL('file://' + __dirname + '/index.html');
   });
 }
+
+function updateSettings() {
+    Object.observe(global.settingsFile, function (changes) {
+        fs.writeFile(app.getAppPath() + "/settings.json", JSON.stringify(global.settingsFile), "utf-8", function (error) {
+            if (error) {
+                throw error;
+            }
+
+
+        });
+    });
+
+    for (key in global.settingsFile) {
+        if (typeof global.settingsFile[key] === "object") {
+
+            Object.observe(global.settingsFile[key], function (changes) {
+                fs.writeFile(app.getAppPath() + "/settings.json", JSON.stringify(global.settingsFile), "utf-8", function (error) {
+                    if (error) {
+                        throw error;
+                    }
+
+
+                });
+            });
+        }
+
+    }
+};
