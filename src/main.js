@@ -72,14 +72,14 @@ if (testMode === true) {
         label: 'Save Note',
         accelerator: 'CmdOrCtrl+S',
         click: function(item, focusedWindow) {
-          Logger.info('Want to create a new Notebook!');
+          Logger.info('Want to save a Notebook!');
           fileManager.saveMarkdownFile();
         }
       }, {
         label: 'Save Note As',
         accelerator: 'Shift+CmdOrCtrl+S',
         click: function(item, focusedWindow) {
-          Logger.info('Want to create a new Notebook!');
+          Logger.info('Want to save a Notebook as ...!');
           Logger.error('NYI!');
         }
       }]
