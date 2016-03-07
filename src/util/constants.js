@@ -6,3 +6,5 @@ function define(name, value) {
 }
 
 define("STANDARD_FILE_PATH", "/Users/MaxiMac/Documents/NoteDown/");
+
+exports.currentContent = undefined;

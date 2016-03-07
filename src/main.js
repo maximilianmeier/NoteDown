@@ -6,6 +6,7 @@ const Logger = require('./util/logger.js');
 const fileManager = require('./file-manager.js');
 const Constants = require('./util/constants.js');
 const fs = require('fs');
+const ipcMain = require('electron').ipcMain;
 const Menu = electron.Menu;
 var testMode = false;
 
@@ -63,6 +64,20 @@ if (testMode === true) {
       }, {
         label: 'New Notebook',
         accelerator: 'Shift+CmdOrCtrl+N',
+        click: function(item, focusedWindow) {
+          Logger.info('Want to create a new Notebook!');
+          Logger.error('NYI!');
+        }
+      }, {
+        label: 'Save Note',
+        accelerator: 'CmdOrCtrl+S',
+        click: function(item, focusedWindow) {
+          Logger.info('Want to create a new Notebook!');
+          fileManager.saveMarkdownFile();
+        }
+      }, {
+        label: 'Save Note As',
+        accelerator: 'Shift+CmdOrCtrl+S',
         click: function(item, focusedWindow) {
           Logger.info('Want to create a new Notebook!');
           Logger.error('NYI!');
@@ -242,3 +257,13 @@ function updateSettings() {
 
     }
 };
+
+ipcMain.on('setCurrentFile', function(event, arg) {
+  global.settingsFile.CURRENT_FILE = arg;
+  event.returnValue = 'saved';
+});
+
+ipcMain.on('setCurrentContent', function(event, arg) {
+  global.CURRENT_CONTENT = arg;
+  event.returnValue = 'saved';
+});

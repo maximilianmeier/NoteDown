@@ -1,10 +1,10 @@
 var fileUtil = require('./util/file-util.js');
 var dialog = require('electron').dialog;
 var Logger = require('./util/logger.js');
-var remote = require('electron').remote;
+var Constants = require('./util/constants.js');
+var fs = require('fs');
 
 exports.createNewMarkdownFile = function() {
-console.log(global.settingsFile.STANDARD_FILE_PATH);
   dialog.showSaveDialog({
     title: 'Create new file',
     defaultPath: global.settingsFile.STANDARD_FILE_PATH,
@@ -19,4 +19,12 @@ console.log(global.settingsFile.STANDARD_FILE_PATH);
     }
     fileUtil.createNewFile(fileName);
   });
-}
+};
+
+exports.saveMarkdownFile = function() {
+  var currentFile = global.settingsFile.CURRENT_FILE;
+  var currentContent = global.CURRENT_CONTENT;
+  console.log(currentFile);
+  console.log(global.CURRENT_CONTENT);
+  fs.writeFileSync(currentFile, currentContent, 'utf-8');
+};
