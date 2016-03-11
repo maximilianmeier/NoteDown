@@ -5,8 +5,11 @@ body {
   float: left;
   height: 100vh; }
 
+.editor {
+  width: 80%; }
+
 .editorPane, .previewPane {
-  width: 40%; }
+  width: 50%; }
 
 .directoryPane {
   width: 20%; }

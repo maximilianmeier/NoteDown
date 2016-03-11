@@ -43,8 +43,8 @@ if (testMode === true) {
   Logger.info("start testing");
   app.on('ready', function() {
     var mainWindow = new BrowserWindow({
-      width: 800,
-      height: 600
+      width: 1200,
+      height: 800
     });
     mainWindow.loadURL('file://' + __dirname + '/../test/index.html');
   });
@@ -223,8 +223,8 @@ if (testMode === true) {
 
   app.on('ready', function() {
     var mainWindow = new BrowserWindow({
-      width: 800,
-      height: 600
+      width: 1200,
+      height: 800
     });
     mainWindow.loadURL('file://' + __dirname + '/index.html');
   });
