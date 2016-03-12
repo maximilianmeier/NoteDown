@@ -5,6 +5,7 @@ const myApp = require('./app.js');
 const Logger = require('./util/logger.js');
 const fileManager = require('./file-manager.js');
 const Constants = require('./util/constants.js');
+const editor = require('./editor.js');
 const fs = require('fs');
 const ipcMain = require('electron').ipcMain;
 const Menu = electron.Menu;
@@ -81,6 +82,13 @@ if (testMode === true) {
         click: function(item, focusedWindow) {
           Logger.info('Want to save a Notebook as ...!');
           Logger.error('NYI!');
+        }
+      }, {
+        label: 'Close Note',
+        accelerator: 'CmdOrCtrl+W',
+        click: function(item, focusedWindow) {
+          Logger.info('Want to close the Note!');
+          editor.closeFileMainProcess(focusedWindow);
         }
       }]
     }, {
