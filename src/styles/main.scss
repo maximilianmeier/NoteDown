@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: 'Helvetica Neue', 'Open Sans', Helvetica, Arial, sans-serif;
 }
 .mainWindowPane {
   float: left;
@@ -14,8 +15,15 @@ body {
   width: 50%;
 }
 
+.previewPane {
+  border-right: 1px solid #006d67;
+  box-sizing: border-box;
+}
+
 .directoryPane {
   width: 20%;
+  border-right: 1px solid #006d67;
+  box-sizing: border-box;
 }
 
 .editorFrame {
@@ -28,11 +36,19 @@ body {
   background-color: #006d67;
   height: 50px;
   color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .fileList {
   .fileElement {
     margin: 5px;
-    border: 1px solid #006d07;
+    border: 1px solid #006d67;
+    background-color: #006d67;
+    color: #FFFFFF;
+    cursor: pointer;
+    cursor: hand;
   }
 }
