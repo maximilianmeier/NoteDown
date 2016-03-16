@@ -163,7 +163,7 @@ if (testMode === true) {
         role: 'minimize'
       }, {
         label: 'Close',
-        accelerator: 'CmdOrCtrl+W',
+        accelerator: '',
         role: 'close'
       }, ]
     }, {
