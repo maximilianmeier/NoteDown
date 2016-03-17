@@ -1,6 +1,6 @@
 {
-  "name": "notedown",
-  "version": "1.0.0",
+  "name": "NoteDown",
+  "version": "0.1.0",
   "description": "NoteDown is a markdown developer notebook",
   "main": "src/main.js",
   "scripts": {

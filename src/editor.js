@@ -8,7 +8,7 @@ var ipcRenderer = require('electron').ipcRenderer;
 
 exports.openFile = function(file) {
   createPanel();
-  $(".editorFrame").text(file);
+  $(".codeArea").text(file);
   $(".previewFrame").html(markdown(file));
   watchInput();
 };
@@ -23,7 +23,7 @@ exports.closeFileMainProcess = function(focusedWindow) {
 }
 
 function createPanel() {
-  $(".editor").html("<div class='mainWindowPane previewPane'><div class='previewHeader headline'>Preview</div><div class='previewFrame'></div></div><div class='mainWindowPane editorPane'><div class='editorHeader headline'>Editor</div><textarea class='editorFrame' name='name' rows='8' cols='40'></textarea></div>")
+  $(".editor").html("<div class='mainWindowPane previewPane'><div class='previewHeader headline'>Preview</div><div class='previewFrame'></div></div><div class='mainWindowPane editorPane'><div class='editorHeader headline'>Editor</div><div class='editorFrame'><textarea class='codeArea' name='name' rows='8' cols='40'></textarea></div></div>")
 }
 
 function createNoPanel() {
@@ -31,7 +31,7 @@ function createNoPanel() {
 }
 
 function watchInput() {
-  $(".editorFrame").bind('input propertychange', function() {
+  $(".codeArea").bind('input propertychange', function() {
     var self = this;
     $(".previewFrame").html(markdown(self.value));
     ipcRenderer.sendSync('setCurrentContent', self.value);

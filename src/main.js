@@ -7,6 +7,7 @@ const fileManager = require('./file-manager.js');
 const Constants = require('./util/constants.js');
 const editor = require('./editor.js');
 const fs = require('fs');
+const uiManager = require('./ui-manager.js');
 const ipcMain = require('electron').ipcMain;
 const Menu = electron.Menu;
 var testMode = false;
@@ -21,23 +22,25 @@ arguments.forEach(function(val, index, array) {
 
 try {
   var settingsFile = JSON.parse(fs.readFileSync(app.getAppPath() + '/settings.json', 'utf-8'));
-  global.basicSettings = settingsFile;
+  global.settingsFile = settingsFile;
   updateSettings();
 } catch (e) {
-  var basicSettings = {
-  };
+  var basicSettings = {};
   fs.writeFileSync(app.getAppPath() + '/settings.json', JSON.stringify(basicSettings), 'utf-8');
   global.settingsFile = basicSettings;
   updateSettings();
 }
 
 console.log(app.getPath('home'));
-
-if (process.platform == 'darwin') {
-  global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '/Documents/NoteDown';
-  //Constants.defineGlobal("STANDARD_FILE_PATH","/Users/MaxiMac/Documents/NoteDown/");
-} else if (process.platform = 'win32') {
-  global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '\\Documents\\NoteDown';
+console.log(global.settingsFile.STANDARD_FILE_PATH);
+if(global.settingsFile.STANDARD_FILE_PATH === undefined) {
+  console.log("editing STANDARD_FILE_PATH");
+  if (process.platform == 'darwin') {
+    global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '/Documents/NoteDown';
+    //Constants.defineGlobal("STANDARD_FILE_PATH","/Users/MaxiMac/Documents/NoteDown/");
+  } else if (process.platform = 'win32') {
+    global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '\\Documents\\NoteDown';
+  }
 }
 
 if (testMode === true) {
@@ -165,7 +168,16 @@ if (testMode === true) {
         label: 'Close',
         accelerator: '',
         role: 'close'
-      }, ]
+      },/* {
+        if (process.platform = 'win32') {
+          label: 'settings',
+          accelerator: 'CmdOrCtrl+,',
+          click: function() {
+            Logger.info("Opening Settings!");
+            Logger.info("NYI");
+          }
+        }
+      },*/]
     }, {
       label: 'Help',
       role: 'help',
@@ -186,6 +198,14 @@ if (testMode === true) {
           role: 'about'
         }, {
           type: 'separator'
+        }, {
+          label: 'Settings',
+          accelerator: 'CmdOrCtrl+,',
+          click: function(item, focusedWindow) {
+            Logger.info("Opening settings!");
+            uiManager.startupSettings(focusedWindow);
+            Logger.info("NOT YET COMPLETEY IMPLEMENTED");
+          }
         }, {
           label: 'Services',
           role: 'services',
@@ -239,31 +259,31 @@ if (testMode === true) {
 }
 
 function updateSettings() {
-    Object.observe(global.settingsFile, function (changes) {
-        fs.writeFile(app.getAppPath() + "/settings.json", JSON.stringify(global.settingsFile), "utf-8", function (error) {
-            if (error) {
-                throw error;
-            }
+  Object.observe(global.settingsFile, function(changes) {
+    fs.writeFile(app.getAppPath() + "/settings.json", JSON.stringify(global.settingsFile), "utf-8", function(error) {
+      if (error) {
+        throw error;
+      }
+
+
+    });
+  });
+
+  for (key in global.settingsFile) {
+    if (typeof global.settingsFile[key] === "object") {
+
+      Object.observe(global.settingsFile[key], function(changes) {
+        fs.writeFile(app.getAppPath() + "/settings.json", JSON.stringify(global.settingsFile), "utf-8", function(error) {
+          if (error) {
+            throw error;
+          }
 
 
         });
-    });
-
-    for (key in global.settingsFile) {
-        if (typeof global.settingsFile[key] === "object") {
-
-            Object.observe(global.settingsFile[key], function (changes) {
-                fs.writeFile(app.getAppPath() + "/settings.json", JSON.stringify(global.settingsFile), "utf-8", function (error) {
-                    if (error) {
-                        throw error;
-                    }
-
-
-                });
-            });
-        }
-
+      });
     }
+
+  }
 };
 
 ipcMain.on('setCurrentFile', function(event, arg) {
