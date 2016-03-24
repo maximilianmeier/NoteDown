@@ -25,11 +25,10 @@ body {
   margin: 5%; }
 
 .editorFrame {
-  margin: 5%;
-  width: 90%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   border: none; }
-  .editorFrame textarea {
+  .editorFrame #editor {
     border: none;
     width: 100%;
     height: 100%; }

@@ -1,6 +1,6 @@
 var fs = require('fs');
 exports.createNewFile = function(filePath) {
-  fs.writeFileSync(filePath);
+  fs.writeFileSync(filePath,"","utf-8");
 }
 
 exports.openFile = function(filePath) {

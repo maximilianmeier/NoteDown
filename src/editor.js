@@ -6,9 +6,18 @@ var ipcRenderer = require('electron').ipcRenderer;
 
 
 
+
 exports.openFile = function(file) {
   createPanel();
-  $(".codeArea").text(file);
+  $("#editor").text(file);
+   var editor = ace.edit("editor");
+   var MarkDownMode = ace.require("ace/mode/markdown").Mode;
+  editor.session.setMode(new MarkDownMode());
+  editor.getSession().on('change', function(e) {
+    $(".previewFrame").html(markdown(editor.getValue()));
+    ipcRenderer.sendSync('setCurrentContent', editor.getValue());
+  });
+
   $(".previewFrame").html(markdown(file));
   watchInput();
 };
@@ -19,11 +28,11 @@ exports.closeFile = function() {
 
 exports.closeFileMainProcess = function(focusedWindow) {
   var code = "<div class=\"headline\">Please open a file</div>";
-  focusedWindow.webContents.executeJavaScript("document.getElementsByClassName('editor')[0].innerHTML = '"+code+"';");
+  focusedWindow.webContents.executeJavaScript("document.getElementById('editor').innerHTML = '"+code+"';");
 }
 
 function createPanel() {
-  $(".editor").html("<div class='mainWindowPane previewPane'><div class='previewHeader headline'>Preview</div><div class='previewFrame'></div></div><div class='mainWindowPane editorPane'><div class='editorHeader headline'>Editor</div><div class='editorFrame'><textarea class='codeArea' name='name' rows='8' cols='40'></textarea></div></div>")
+  $(".editor").html("<div class='mainWindowPane previewPane'><div class='previewHeader headline'>Preview</div><div class='previewFrame'></div></div><div class='mainWindowPane editorPane'><div class='editorHeader headline'>Editor</div><div class='editorFrame'><div id='editor'></div></div></div>")
 }
 
 function createNoPanel() {
@@ -31,7 +40,7 @@ function createNoPanel() {
 }
 
 function watchInput() {
-  $(".codeArea").bind('input propertychange', function() {
+  $("#editor").bind('input propertychange', function() {
     var self = this;
     $(".previewFrame").html(markdown(self.value));
     ipcRenderer.sendSync('setCurrentContent', self.value);

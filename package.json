@@ -27,6 +27,7 @@
     "qunitjs": "^1.22.0"
   },
   "dependencies": {
+    "codemirror": "^5.12.0",
     "jquery": "^2.2.1",
     "marked": "^0.3.5"
   }
