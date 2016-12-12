@@ -1,6 +1,8 @@
 var $ = require('jquery');
 var markdown = require('marked');
 var ipcRenderer = require('electron').ipcRenderer;
+const Logger = require('./util/logger');
+const ModuleName = "EditorModule";
 
 
 exports.openFile = function (file) {

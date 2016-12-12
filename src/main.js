@@ -10,7 +10,7 @@ const Constants = require('./util/constants');
 var testMode = false;
 const ModuleName = "MAIN_MODULE"
 
-Logger.info("Starting application", ModuleName);
+Logger.info("Starting application. Version: " + Constants.VERSION_NUMBER, ModuleName);
 init();
 
 
