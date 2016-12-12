@@ -3,6 +3,7 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const myApp = require('./app.js');
 const Logger = require('./util/logger.js');
+const settings = require('./util/settings.js');
 const fileManager = require('./file-manager.js');
 const Constants = require('./util/constants.js');
 const editor = require('./editor.js');
@@ -21,25 +22,19 @@ arguments.forEach(function(val, index, array) {
 });
 
 try {
-  var settingsFile = JSON.parse(fs.readFileSync(app.getAppPath() + '/settings.json', 'utf-8'));
-  global.settingsFile = settingsFile;
-  //updateSettings();
+  settings.reload();
 } catch (e) {
-  var basicSettings = {};
-  fs.writeFileSync(app.getAppPath() + '/settings.json', JSON.stringify(basicSettings), 'utf-8');
-  global.settingsFile = basicSettings;
-  //updateSettings();
+  settings.init();
 }
 
 console.log(app.getPath('home'));
-console.log(global.settingsFile.STANDARD_FILE_PATH);
-if(global.settingsFile.STANDARD_FILE_PATH === undefined) {
+console.log(settings.get('STANDARD_FILE_PATH'));
+if(settings.get("STANDARD_FILE_PATH") === undefined) {
   console.log("editing STANDARD_FILE_PATH");
   if (process.platform == 'darwin') {
-    global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '/Documents/NoteDown';
-    //Constants.defineGlobal("STANDARD_FILE_PATH","/Users/MaxiMac/Documents/NoteDown/");
+    settings.set("STANDARD_FILE_PATH", app.getPath('home') + '/Documents/NoteDown');
   } else if (process.platform = 'win32') {
-    global.settingsFile.STANDARD_FILE_PATH = app.getPath('home') + '\\Documents\\NoteDown';
+    settings.set("STANDARD_FILE_PATH", app.getPath('home') + '\\Documents\\NoteDown');
   }
 }
 
@@ -50,7 +45,7 @@ if (testMode === true) {
       width: 1200,
       height: 800
     });
-    mainWindow.loadURL('file://' + __dirname + '/../test/index.html');
+    mainWindow.loadURL(`file://${__dirname}/../test/index.html`);
   });
 } else {
   app.once('ready', function() {
@@ -244,9 +239,6 @@ if (testMode === true) {
 
     var menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
-
-    var menu = Menu.buildFromTemplate(template);
-    Menu.setApplicationMenu(menu);
   });
 
   app.on('ready', function() {
@@ -254,44 +246,20 @@ if (testMode === true) {
       width: 1200,
       height: 800
     });
-    mainWindow.loadURL('file://' + __dirname + '/index.html');
+    mainWindow.loadURL(`file://${__dirname}/index.html`);
   });
 }
 
-function updateSettings() {
-  Object.observe(global.settingsFile, function(changes) {
-    fs.writeFile(app.getAppPath() + "/settings.json", JSON.stringify(global.settingsFile), "utf-8", function(error) {
-      if (error) {
-        throw error;
-      }
-
-
-    });
-  });
-
-  for (key in global.settingsFile) {
-    if (typeof global.settingsFile[key] === "object") {
-
-      Object.observe(global.settingsFile[key], function(changes) {
-        fs.writeFile(app.getAppPath() + "/settings.json", JSON.stringify(global.settingsFile), "utf-8", function(error) {
-          if (error) {
-            throw error;
-          }
-
-
-        });
-      });
-    }
-
-  }
-};
-
 ipcMain.on('setCurrentFile', function(event, arg) {
-  global.settingsFile.CURRENT_FILE = arg;
+  settings.set('CURRENT_FILE', arg);
   event.returnValue = 'saved';
 });
 
 ipcMain.on('setCurrentContent', function(event, arg) {
-  global.CURRENT_CONTENT = arg;
+  settings.set('CURRENT_CONTENT', arg);
   event.returnValue = 'saved';
+});
+
+ipcMain.on('getStandardFilePath', function(event, arg) {
+    event.returnValue = settings.get("STANDARD_FILE_PATH");
 });

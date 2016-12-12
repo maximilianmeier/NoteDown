@@ -9,13 +9,13 @@ var ipcRenderer = require('electron').ipcRenderer;
 var Constants = require('./util/constants.js');
 var $ = require('jquery');
 
-fs.readdir(remote.getGlobal('settingsFile').STANDARD_FILE_PATH, (error, files) => {
-  console.log(remote.getGlobal('settingsFile').STANDARD_FILE_PATH);
+fs.readdir(ipcRenderer.sendSync('getStandardFilePath', ""), (error, files) => {
+  console.log(ipcRenderer.sendSync('getStandardFilePath', ""));
   updateFileList(files);
 });
 
-fs.watch(remote.getGlobal('settingsFile').STANDARD_FILE_PATH, (event, filename) => {
-  fs.readdir(remote.getGlobal('settingsFile').STANDARD_FILE_PATH, (error, files) => {
+fs.watch(ipcRenderer.sendSync('getStandardFilePath', ""), (event, filename) => {
+  fs.readdir(ipcRenderer.sendSync('getStandardFilePath', ""), (error, files) => {
     updateFileList(files);
   });
 });
@@ -23,10 +23,10 @@ fs.watch(remote.getGlobal('settingsFile').STANDARD_FILE_PATH, (event, filename) 
 $(document).ready(function() {
   $(".fileList").on('click', "*", function(event) {
     var fileName = $(this).text();
-    var file = fileUtil.openFile(remote.getGlobal('settingsFile').STANDARD_FILE_PATH + '/' + fileName);
+    var file = fileUtil.openFile(ipcRenderer.sendSync('getStandardFilePath', "") + '/' + fileName);
     Editor.openFile(file);
     ipcRenderer.sendSync('setCurrentContent', file);
-    ipcRenderer.sendSync('setCurrentFile', remote.getGlobal('settingsFile').STANDARD_FILE_PATH + '/' + fileName);
+    ipcRenderer.sendSync('setCurrentFile', ipcRenderer.sendSync('getStandardFilePath', "") + '/' + fileName);
   });
 });
 
