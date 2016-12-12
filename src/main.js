@@ -1,11 +1,12 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const Logger = require('./util/logger.js');
-const settings = require('./util/settings.js');
+const Logger = require('./util/logger');
+const settings = require('./util/settings');
 const fs = require('fs');
 const ipcMain = electron.ipcMain;
 const Menu = electron.Menu;
+const Constants = require('./util/constants');
 var testMode = false;
 const ModuleName = "MAIN_MODULE"
 
@@ -14,6 +15,19 @@ init();
 
 
 function init() {
+    testMode = checkForTestMode();
+
+    loadSettings();
+
+    if (testMode === true) {
+        startTestMode();
+    } else {
+        startApplication();
+    }
+}
+
+function checkForTestMode() {
+    var testMode = false;
     var arguments = process.argv.slice(2);
     arguments.forEach(function (val, index, array) {
         if (val == 'runTests') {
@@ -21,7 +35,10 @@ function init() {
             Logger.info('Start running tests!', ModuleName);
         }
     });
+    return testMode;
+}
 
+function loadSettings() {
     Logger.info("Loading Settings File", ModuleName);
     try {
         settings.reload();
@@ -38,40 +55,42 @@ function init() {
             settings.set("STANDARD_FILE_PATH", app.getPath('home') + '\\Documents\\NoteDown');
         }
     }
+}
 
-    if (testMode === true) {
-        Logger.info("start testing", ModuleName);
-        app.on('ready', function () {
-            var mainWindow = new BrowserWindow({
-                width: 1200,
-                height: 800
-            });
-            mainWindow.loadURL(`file://${__dirname}/../test/index.html`);
+function startTestMode() {
+    Logger.info("start testing", ModuleName);
+    app.on('ready', function () {
+        var mainWindow = new BrowserWindow({
+            width: Constants.STANDARD_WIDTH,
+            height: Constants.STANDARD_HEIGHT
         });
-    } else {
-        app.once('ready', function () {
-            const menuTemplate = require('./components/menu-template.js');
+        mainWindow.loadURL(`file://${__dirname}/../test/index.html`);
+    });
+}
 
-            var template = menuTemplate.template;
+function startApplication() {
+    app.once('ready', function () {
+        const menuTemplate = require('./components/menu-template.js');
 
-            if (process.platform == 'darwin') {
-                template.unshift(menuTemplate.appleTemplate);
-                // Window menu.
-                template[3].submenu.push(menuTemplate.appleWindowTemplate);
-            }
+        var template = menuTemplate.template;
 
-            var menu = Menu.buildFromTemplate(template);
-            Menu.setApplicationMenu(menu);
+        if (process.platform == 'darwin') {
+            template.unshift(menuTemplate.appleTemplate);
+            // Window menu.
+            template[3].submenu.push(menuTemplate.appleWindowTemplate);
+        }
+
+        var menu = Menu.buildFromTemplate(template);
+        Menu.setApplicationMenu(menu);
+    });
+
+    app.on('ready', function () {
+        var mainWindow = new BrowserWindow({
+            width: Constants.STANDARD_WIDTH,
+            height: Constants.STANDARD_HEIGHT
         });
-
-        app.on('ready', function () {
-            var mainWindow = new BrowserWindow({
-                width: 1200,
-                height: 800
-            });
-            mainWindow.loadURL(`file://${__dirname}/index.html`);
-        });
-    }
+        mainWindow.loadURL(`file://${__dirname}/index.html`);
+    });
 }
 
 

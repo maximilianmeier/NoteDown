@@ -1,4 +1,4 @@
-var Logger = require('./util/logger.js');
+var Logger = require('./util/logger');
 
 
 exports.createSum= function (x, y) {

@@ -1,7 +1,7 @@
-var fileUtil = require('./util/file-util.js');
+var fileUtil = require('./util/file-util');
 var dialog = require('electron').dialog;
-var Logger = require('./util/logger.js');
-var settings = require('./util/settings.js');
+var Logger = require('./util/logger');
+var settings = require('./util/settings');
 var fs = require('fs');
 
 exports.createNewMarkdownFile = function () {

@@ -1,8 +1,8 @@
 var fs = require('fs');
 var electron = require('electron');
-var Constants = require('./constants.js');
+var Constants = require('./constants');
 var app = electron.app;
-var Logger = require('../util/logger.js');
+var Logger = require('../util/logger');
 const moduleName = "SettingsFile"
 module.exports = {
     settingsFilePath: app.getAppPath() + '/' + Constants.SETTINGS_FILE_NAME,

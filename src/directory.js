@@ -1,12 +1,12 @@
 var fs = require('fs');
-var Logger = require('./util/logger.js');
-var fileUtil = require('./util/file-util.js');
-var Constants = require('./util/constants.js');
-var Editor = require('./editor.js');
+var Logger = require('./util/logger');
+var fileUtil = require('./util/file-util');
+var Constants = require('./util/constants');
+var Editor = require('./editor');
 var remote = require('electron').remote;
 var markdown = require('marked');
 var ipcRenderer = require('electron').ipcRenderer;
-var Constants = require('./util/constants.js');
+var Constants = require('./util/constants');
 var $ = require('jquery');
 
 fs.readdir(ipcRenderer.sendSync('getStandardFilePath', ""), (error, files) => {

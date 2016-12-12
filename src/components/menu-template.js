@@ -1,8 +1,8 @@
 const electron = require('electron');
 const Menu = electron.Menu;
-const Logger = require('../util/logger.js');
-const fileManager = require('../file-manager.js');
-const editor = require('../editor.js');
+const Logger = require('../util/logger');
+const fileManager = require('../file-manager');
+const editor = require('../editor');
 exports.template = [{
     label: 'Notes',
     submenu: [{
