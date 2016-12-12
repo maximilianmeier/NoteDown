@@ -1,5 +1,5 @@
 const electron = require('electron');
-const Menu = electron.Menu;
+const app = electron.app;
 const Logger = require('../util/logger');
 const fileManager = require('../file-manager');
 const uiManager = require('../ui-manager');
