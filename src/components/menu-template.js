@@ -4,6 +4,13 @@ const Logger = require('../util/logger');
 const fileManager = require('../file-manager');
 const uiManager = require('../ui-manager');
 const editor = require('../editor');
+
+/**
+ * General menu template of the application
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
 exports.template = [{
     label: 'Notes',
     submenu: [{
@@ -137,6 +144,12 @@ exports.template = [{
     },]
 },];
 
+/**
+ * MacOS specific menu template to add the extra menu item
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
 exports.appleTemplate = {
     label: electron.app.getName(),
     submenu: [{
@@ -180,6 +193,12 @@ exports.appleTemplate = {
     },]
 };
 
+/**
+ * Additional macOS window menu item.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
 exports.appleWindowTemplate = {
     type: 'separator'
 }, {

@@ -4,6 +4,19 @@ var Logger = require('./util/logger');
 var settings = require('./util/settings');
 var fs = require('fs');
 
+/**
+ * Handles interactions with the files.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
+
+/**
+ * Create a new markdown file.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
 exports.createNewMarkdownFile = function () {
     dialog.showSaveDialog({
         title: 'Create new file',
@@ -21,6 +34,12 @@ exports.createNewMarkdownFile = function () {
     });
 };
 
+/**
+ * Saves current file. The necessary information are stored in the settings.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
 exports.saveMarkdownFile = function () {
     var currentFile = settings.get("CURRENT_FILE");
     var currentContent = settings.get("CURRENT_CONTENT");

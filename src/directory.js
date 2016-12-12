@@ -6,13 +6,20 @@ var ipcRenderer = require('electron').ipcRenderer;
 var $ = require('jquery');
 const ModuleName = "DirectoryModule";
 
+/**
+ * Directory module is responsible for displaying the current file List in the UI and handles the click interactions for opening a new File.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
+
 fs.readdir(ipcRenderer.sendSync('getStandardFilePath', ""), (error, files) => {
-    updateFileList(files);
+    _updateFileList(files);
 });
 
 fs.watch(ipcRenderer.sendSync('getStandardFilePath', ""), (event, filename) => {
     fs.readdir(ipcRenderer.sendSync('getStandardFilePath', ""), (error, files) => {
-        updateFileList(files);
+        _updateFileList(files);
     });
 });
 
@@ -28,7 +35,14 @@ $(document).ready(function () {
     });
 });
 
-function updateFileList(files) {
+/**
+ *  Adds the new file list to the Interface.
+ *
+ * @param files List of current files.
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
+function _updateFileList(files) {
     if (files === undefined) {
         return;
     }

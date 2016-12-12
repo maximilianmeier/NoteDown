@@ -1,24 +1,55 @@
 var APPNAME_TAG = '[NOTEDOWN]';
+
+/**
+ * Logger for the application with additional information.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
 module.exports = {
-    log: function (input, moduleName) {
+    /**
+     * Log of information
+     *
+     * @param message Message that should be displayed.
+     * @param moduleName Module name where the function is called from
+     * @since 0.1.0
+     * @author Maximilian Meier
+     */
+    log: function (message, moduleName) {
         if (!moduleName) {
             moduleName = "General"
         }
-        console.log(new Date().toLocaleString() + ' | ' + APPNAME_TAG + ' | ' + moduleName + ' | [LOG]: ' + input);
+        console.log(new Date().toLocaleString() + ' | ' + APPNAME_TAG + ' | ' + moduleName + ' | [LOG]: ' + message);
     },
 
-    error: function (input, moduleName) {
+    /**
+     * Error log of information
+     *
+     * @param message Message that should be displayed.
+     * @param moduleName Module name where the function is called from
+     * @since 0.1.0
+     * @author Maximilian Meier
+     */
+    error: function (message, moduleName) {
         if (!moduleName) {
             moduleName = "General"
         }
-        console.error(new Date().toLocaleString() + ' | ' + APPNAME_TAG + ' | ' + moduleName + ' | [ERROR]: ' + input);
+        console.error(new Date().toLocaleString() + ' | ' + APPNAME_TAG + ' | ' + moduleName + ' | [ERROR]: ' + message);
     },
 
-    info: function (input, moduleName) {
+    /**
+     * Info log of information
+     *
+     * @param message Message that should be displayed.
+     * @param moduleName Module name where the function is called from
+     * @since 0.1.0
+     * @author Maximilian Meier
+     */
+    info: function (message, moduleName) {
         if (!moduleName) {
             moduleName = "General"
         }
-        console.info(new Date().toLocaleString() + ' | ' + APPNAME_TAG + ' | ' + moduleName + ' | [INFO]: ' + input);
+        console.info(new Date().toLocaleString() + ' | ' + APPNAME_TAG + ' | ' + moduleName + ' | [INFO]: ' + message);
     }
 }
 

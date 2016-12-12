@@ -10,23 +10,41 @@ const Constants = require('./util/constants');
 var testMode = false;
 const ModuleName = "MAIN_MODULE"
 
-Logger.info("Starting application. Version: " + Constants.VERSION_NUMBER, ModuleName);
-init();
+/**
+ * Main exection class of the application. All necesarry information for starting the app are prepared. Then the application is executed.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
 
+_init();
 
-function init() {
-    testMode = checkForTestMode();
+/**
+ * Initializes the app and starts the execution
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
+function _init() {
+    Logger.info("Starting application. Version: " + Constants.VERSION_NUMBER, ModuleName);
+    testMode = _checkForTestMode();
 
-    loadSettings();
+    _loadSettings();
 
     if (testMode === true) {
-        startTestMode();
+        _startTestMode();
     } else {
-        startApplication();
+        _startApplication();
     }
 }
 
-function checkForTestMode() {
+/**
+ * Checks for the test flag of the starting command.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
+function _checkForTestMode() {
     var testMode = false;
     var arguments = process.argv.slice(2);
     arguments.forEach(function (val, index, array) {
@@ -38,7 +56,13 @@ function checkForTestMode() {
     return testMode;
 }
 
-function loadSettings() {
+/**
+ * Loads existing settings or initializes a new settings file.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
+function _loadSettings() {
     Logger.info("Loading Settings File", ModuleName);
     try {
         settings.reload();
@@ -57,7 +81,13 @@ function loadSettings() {
     }
 }
 
-function startTestMode() {
+/**
+ * Starts the execution of the test mode. Instead of the application the test window is shown.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
+function _startTestMode() {
     Logger.info("start testing", ModuleName);
     app.on('ready', function () {
         var mainWindow = new BrowserWindow({
@@ -68,7 +98,13 @@ function startTestMode() {
     });
 }
 
-function startApplication() {
+/**
+ * Starts the normal initialization of the application and loads the interface.
+ *
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
+function _startApplication() {
     app.once('ready', function () {
         const menuTemplate = require('./components/menu-template.js');
 
@@ -76,7 +112,6 @@ function startApplication() {
 
         if (process.platform == 'darwin') {
             template.unshift(menuTemplate.appleTemplate);
-            // Window menu.
             template[3].submenu.push(menuTemplate.appleWindowTemplate);
         }
 
