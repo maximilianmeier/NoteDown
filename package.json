@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Ceany/NoteDown#readme",
   "devDependencies": {
-    "electron-prebuilt": "^0.36.9",
+    "electron": "^1.4.12",
     "qunitjs": "^1.22.0"
   },
   "dependencies": {

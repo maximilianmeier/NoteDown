@@ -1,6 +1,6 @@
 const electron = require('electron');
-const app = require('app');
-const BrowserWindow = require('browser-window');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
 const myApp = require('./app.js');
 const Logger = require('./util/logger.js');
 const fileManager = require('./file-manager.js');
@@ -8,7 +8,7 @@ const Constants = require('./util/constants.js');
 const editor = require('./editor.js');
 const fs = require('fs');
 const uiManager = require('./ui-manager.js');
-const ipcMain = require('electron').ipcMain;
+const ipcMain = electron.ipcMain;
 const Menu = electron.Menu;
 var testMode = false;
 
@@ -23,12 +23,12 @@ arguments.forEach(function(val, index, array) {
 try {
   var settingsFile = JSON.parse(fs.readFileSync(app.getAppPath() + '/settings.json', 'utf-8'));
   global.settingsFile = settingsFile;
-  updateSettings();
+  //updateSettings();
 } catch (e) {
   var basicSettings = {};
   fs.writeFileSync(app.getAppPath() + '/settings.json', JSON.stringify(basicSettings), 'utf-8');
   global.settingsFile = basicSettings;
-  updateSettings();
+  //updateSettings();
 }
 
 console.log(app.getPath('home'));
