@@ -15,8 +15,7 @@ module.exports = {
     set: function (key, val) {
         this.settings[key] = val;
         fs.writeFileSync(this.settingsFilePath, JSON.stringify(this.settings), 'utf-8');
-        Logger.info("Setting File was updated", moduleName);
-        console.log(app.getAppPath());
+        Logger.info("Setting File was updated. Property: " + key, moduleName);
         return val;
     },
     init: function () {

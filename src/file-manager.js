@@ -24,7 +24,5 @@ exports.createNewMarkdownFile = function () {
 exports.saveMarkdownFile = function () {
     var currentFile = settings.get("CURRENT_FILE");
     var currentContent = settings.get("CURRENT_CONTENT");
-    console.log(currentFile);
-    console.log(currentContent);
     fs.writeFileSync(currentFile, currentContent, 'utf-8');
 };

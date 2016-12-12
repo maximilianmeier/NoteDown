@@ -10,7 +10,6 @@ var Constants = require('./util/constants');
 var $ = require('jquery');
 
 fs.readdir(ipcRenderer.sendSync('getStandardFilePath', ""), (error, files) => {
-  console.log(ipcRenderer.sendSync('getStandardFilePath', ""));
   updateFileList(files);
 });
 

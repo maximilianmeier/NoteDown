@@ -2,6 +2,7 @@ const electron = require('electron');
 const Menu = electron.Menu;
 const Logger = require('../util/logger');
 const fileManager = require('../file-manager');
+const uiManager = require('../ui-manager');
 const editor = require('../editor');
 exports.template = [{
     label: 'Notes',
