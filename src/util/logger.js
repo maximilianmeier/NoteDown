@@ -1,12 +1,24 @@
 var APPNAME_TAG = '[NOTEDOWN]';
-exports.log = function(input) {
-  console.log(new Date().toLocaleString() + ' | ' + APPNAME_TAG + input);
-};
+module.exports = {
+    log: function (input, moduleName) {
+        if (!moduleName) {
+            moduleName = "General"
+        }
+        console.log(new Date().toLocaleString() + ' | ' + APPNAME_TAG + ' | ' + moduleName + ' | [LOG]: ' + input);
+    },
 
-exports.error = function(input) {
-  console.log(new Date().toLocaleString() + ' | ' + APPNAME_TAG + '[ERROR]: ' + input);
-};
+    error: function (input, moduleName) {
+        if (!moduleName) {
+            moduleName = "General"
+        }
+        console.error(new Date().toLocaleString() + ' | ' + APPNAME_TAG + ' | ' + moduleName + ' | [ERROR]: ' + input);
+    },
 
-exports.info = function(input) {
-  console.log(new Date().toLocaleString() + ' | ' + APPNAME_TAG + '[INFO]: ' + input);
-};
+    info: function (input, moduleName) {
+        if (!moduleName) {
+            moduleName = "General"
+        }
+        console.info(new Date().toLocaleString() + ' | ' + APPNAME_TAG + ' | ' + moduleName + ' | [INFO]: ' + input);
+    }
+}
+
