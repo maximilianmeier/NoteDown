@@ -35,7 +35,7 @@ exports.openFile = function (file) {
  */
 exports.closeFileMainProcess = function (focusedWindow) {
     var code = "<div class=\"headline\">Please open a file</div>";
-    focusedWindow.webContents.executeJavaScript("document.getElementById('editor').innerHTML = '" + code + "';");
+    focusedWindow.webContents.executeJavaScript("document.getElementById('mainWindow').innerHTML = '" + code + "';");
 }
 
 /**
