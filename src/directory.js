@@ -5,6 +5,7 @@ var Editor = require('./editor');
 var ipcRenderer = require('electron').ipcRenderer;
 var $ = require('jquery');
 const ModuleName = "DirectoryModule";
+const filePath = ipcRenderer.sendSync('getStandardFilePath', "");
 
 /**
  * Directory module is responsible for displaying the current file List in the UI and handles the click interactions for opening a new File.
@@ -13,21 +14,22 @@ const ModuleName = "DirectoryModule";
  * @author Maximilian Meier
  */
 
-fs.readdir(ipcRenderer.sendSync('getStandardFilePath', ""), (error, files) => {
+
+
+fs.readdir(filePath, (error, files) => {
     _updateFileList(files);
 });
 
-fs.watch(ipcRenderer.sendSync('getStandardFilePath', ""), (event, filename) => {
-    fs.readdir(ipcRenderer.sendSync('getStandardFilePath', ""), (error, files) => {
+fs.watch(filePath, (event, filename) => {
+    fs.readdir(filePath, (error, files) => {
         _updateFileList(files);
     });
 });
 
 $(document).ready(function () {
-    $(".fileList").on('click', "*", function (event) {
-        var fileName = $(this).text();
+    $(".fileList").on('click', ".fileContainer", function (event) {
+        var fileName = $(this).attr('id');
         Logger.info("Opening File: " + fileName, ModuleName);
-        console.log("sdf")
         var file = fileUtil.openFile(ipcRenderer.sendSync('getStandardFilePath', "") + '/' + fileName);
         Editor.openFile(file);
         ipcRenderer.sendSync('setCurrentContent', file);
@@ -48,7 +50,11 @@ function _updateFileList(files) {
     }
     var htmlToAppend = "";
     files.forEach(function (file, index, array) {
+        var stats = fs.statSync(filePath + "/" + file);
+        htmlToAppend += "<div id='" + file + "' class='fileContainer'>"
         htmlToAppend += "<div class='fileElement'>" + file + "</div>";
+        htmlToAppend += "<div class='fileDescription'>" + stats.size +" B | " + stats.mtime.toLocaleDateString() + "</div>";
+        htmlToAppend += "</div>";
     });
     $(".fileList").html(htmlToAppend);
 }

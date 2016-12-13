@@ -8,7 +8,7 @@ const ipcMain = electron.ipcMain;
 const Menu = electron.Menu;
 const Constants = require('./util/constants');
 var testMode = false;
-const ModuleName = "MAIN_MODULE"
+const ModuleName = "MAIN_MODULE";
 
 /**
  * Main exection class of the application. All necesarry information for starting the app are prepared. Then the application is executed.

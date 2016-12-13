@@ -19,7 +19,8 @@ body {
 .directoryPane {
   width: 20%;
   border-right: 1px solid #006d67;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  background-color: #c3d9ff; }
 
 .previewFrame {
   margin: 5%; }
@@ -41,13 +42,20 @@ body {
   justify-content: center;
   align-items: center; }
 
-.fileList .fileElement {
-  margin: 5px;
-  border: 1px solid #006d67;
-  background-color: #006d67;
-  color: #FFFFFF;
-  cursor: pointer;
-  cursor: hand; }
+.fileList {
+  height: 100%; }
+  .fileList .fileContainer {
+    margin: 5px 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    cursor: hand; }
+    .fileList .fileContainer .fileElement {
+      padding: 5px;
+      background-color: #006d67; }
+    .fileList .fileContainer .fileDescription {
+      font-size: 12px;
+      padding: 5px;
+      background-color: #00a097; }
 
 .hoverContainer {
   position: absolute;
