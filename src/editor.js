@@ -1,6 +1,7 @@
 var $ = require('jquery');
 var markdown = require('marked');
 var ipcRenderer = require('electron').ipcRenderer;
+var TemplateLoader = require('./util/template-loader');
 const ModuleName = "EditorModule";
 
 
@@ -45,7 +46,7 @@ exports.closeFileMainProcess = function (focusedWindow) {
  * @author Maximilian Meier
  */
 function _createPanel() {
-    $(".editor").html("<div class='previewPane'><div class='previewHeader headline'>Preview</div><div class='previewFrame'></div></div><div class='editorPane'><div class='editorHeader headline'>Editor</div><div class='editorFrame'><div id='editor'></div></div></div>")
+    $(".editor").html(TemplateLoader.loadTemplate('editor-panel'));
 }
 
 /**

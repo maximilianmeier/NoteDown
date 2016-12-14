@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Ceany/NoteDown#readme",
   "devDependencies": {
     "electron": "^1.4.12",
+    "electron-packager": "^8.4.0",
     "qunitjs": "^1.22.0"
   },
   "dependencies": {
