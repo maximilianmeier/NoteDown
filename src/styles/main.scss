@@ -2,40 +2,65 @@ body {
   margin: 0;
   font-family: 'Helvetica Neue', 'Open Sans', Helvetica, Arial, sans-serif;
 }
+.container {
+  position: absolute;
+  left:0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
 .mainWindowPane {
-  float: left;
   height: 100vh;
+  width: auto;
+  padding-left: 200px;
 }
 
 .editor {
-  width: 80%;
 }
 
-.editorPane, .previewPane {
+.previewPane {
+  height:100%;
   width: 50%;
+  float: left;
+}
+
+.editorPane {
+  @extend .previewPane;
+  position: relative;
 }
 
 .previewPane {
   border-right: 1px solid #006d67;
   box-sizing: border-box;
+  position: relative;
 }
 
 .directoryPane {
-  width: 20%;
+  width: 200px;
+  height:100%;
   border-right: 1px solid #006d67;
   box-sizing: border-box;
+  float: left;
 
   background-color: #c3d9ff;
 }
 
 .previewFrame {
-  margin: 5%;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  width: 90%;
+  overflow-y: scroll;
+  padding: 0 5%;
 }
 
 .editorFrame {
-  width: 100%;
-  height: 100%;
-  border: none;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   #editor {
     border: none;
     width: 100%;
@@ -54,7 +79,12 @@ body {
 }
 
 .fileList {
-  height: 100%;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  overflow-y: scroll;
   .fileContainer {
     margin: 5px 0;
     color: #FFFFFF;

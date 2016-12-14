@@ -9,5 +9,7 @@ module.exports = {
     SETTINGS_FILE_NAME: "settings.json",
     STANDARD_WIDTH: 1200,
     STANDARD_HEIGHT: 800,
+    MIN_WIDTH: 800,
+    MIN_HEIGHT: 600,
     VERSION_NUMBER: process.env.npm_package_version
 }

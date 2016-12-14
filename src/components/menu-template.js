@@ -17,35 +17,35 @@ exports.template = [{
         label: 'New Note',
         accelerator: 'CmdOrCtrl+N',
         click: function (item, focusedWindow) {
-            Logger.info('Want to create a new Note!');
+            Logger.info('Creating a new Note!');
             fileManager.createNewMarkdownFile("test");
         }
     }, {
         label: 'New Notebook',
         accelerator: 'Shift+CmdOrCtrl+N',
         click: function (item, focusedWindow) {
-            Logger.info('Want to create a new Notebook!');
+            Logger.info('Creating a new Notebook!');
             Logger.error('NYI!');
         }
     }, {
         label: 'Save Note',
         accelerator: 'CmdOrCtrl+S',
         click: function (item, focusedWindow) {
-            Logger.info('Want to save a Notebook!');
+            Logger.info('Saving a Note!');
             fileManager.saveMarkdownFile();
         }
     }, {
         label: 'Save Note As',
         accelerator: 'Shift+CmdOrCtrl+S',
         click: function (item, focusedWindow) {
-            Logger.info('Want to save a Notebook as ...!');
+            Logger.info('Saving Note as ...!');
             Logger.error('NYI!');
         }
     }, {
         label: 'Close Note',
         accelerator: 'CmdOrCtrl+W',
         click: function (item, focusedWindow) {
-            Logger.info('Want to close the Note!');
+            Logger.info('Closing current Note!');
             editor.closeFileMainProcess(focusedWindow);
         }
     }]
