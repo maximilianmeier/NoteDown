@@ -1,5 +1,6 @@
 var settings = require('./settings');
 var isSettingsShown = false;
+var TemplateLoader = require('./util/template-loader');
 
 /**
  * Initialized settings window.
@@ -10,7 +11,7 @@ var isSettingsShown = false;
  */
 exports.startupSettings = function (focusedWindow) {
     if (!isSettingsShown) {
-        var code = "<div class=\"hoverContainer\"><div class=\"hoverSettings\"><h1>Settings:</h1></div></div>";
+        var code = TemplateLoader.loadTemplate('settings-panel');
         focusedWindow.webContents.executeJavaScript("document.getElementsByClassName('hoverSpace')[0].innerHTML = '" + code + "';");
         settings.startUpSettingsPage();
         isSettingsShown = true;

@@ -35,7 +35,7 @@ exports.openFile = function (file) {
  * @author Maximilian Meier
  */
 exports.closeFileMainProcess = function (focusedWindow) {
-    var code = "<div class=\"headline\">Please open a file</div>";
+    var code = TemplateLoader.loadTemplate('empty-editor-panel');
     focusedWindow.webContents.executeJavaScript("document.getElementById('mainWindow').innerHTML = '" + code + "';");
 }
 
@@ -56,7 +56,7 @@ function _createPanel() {
  * @author Maximilian Mier
  */
 function _createNoPanel() {
-    $(".editor").html("<div class='headline'>Please open a file</div>");
+    $(".editor").html(TemplateLoader.loadTemplate('empty-editor-panel'));
 }
 
 /**
