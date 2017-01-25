@@ -18,7 +18,7 @@ exports.loadTemplate = function (templateName, data, extension) {
         return timestamp.toLocaleDateString();
     });
     if (!extension) {
-        extension = 'html';
+        extension = 'hbs';
     }
     var source = fs.readFileSync(__dirname + '/../templates/' + templateName + '.' + extension, 'utf-8');
 
