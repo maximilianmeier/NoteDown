@@ -27,6 +27,14 @@ exports.openFile = function (filePath) {
     return file;
 }
 
+/**
+ * Reads a directory and adds the stats of each file.
+ *
+ * @param filePath
+ * @returns {{files: Array}}
+ * @since 0.1.0
+ * @author Maximilian Meier
+ */
 exports.openFileListWithStats = function (filePath) {
     var files = fs.readdirSync(filePath, 'utf8');
     var fileListWithStats = {
