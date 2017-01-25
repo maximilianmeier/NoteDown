@@ -1,4 +1,5 @@
 var fs = require('fs');
+var Handlebars = require('handlebars');
 var FileUtil = require('./file-util');
 
 /**
@@ -12,10 +13,16 @@ var FileUtil = require('./file-util');
  * @since 0.1.0
  * @author Maximilian Meier
  */
-exports.loadTemplate = function (templateName, extension) {
-    if(!extension) {
+exports.loadTemplate = function (templateName, data, extension) {
+    Handlebars.registerHelper('date-fmt', function (timestamp){
+        return timestamp.toLocaleDateString();
+    });
+    if (!extension) {
         extension = 'html';
     }
-    var filePath = __dirname + '/../templates/' + templateName + '.' + extension;
-    return FileUtil.openFile(filePath);
+    var source = fs.readFileSync(__dirname + '/../templates/' + templateName + '.' + extension, 'utf-8');
+
+    var template = Handlebars.compile(source);
+    var html = template(data);
+    return html;
 }

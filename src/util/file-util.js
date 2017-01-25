@@ -26,3 +26,15 @@ exports.openFile = function (filePath) {
     var file = fs.readFileSync(filePath, 'utf8');
     return file;
 }
+
+exports.openFileListWithStats = function (filePath) {
+    var files = fs.readdirSync(filePath, 'utf8');
+    var fileListWithStats = {
+        files: []
+    };
+    files.forEach(function (file, index, array) {
+        var stats = fs.statSync(filePath + "/" + file);
+        fileListWithStats.files.push({file, stats});
+    });
+    return fileListWithStats;
+}

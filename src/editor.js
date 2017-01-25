@@ -36,7 +36,7 @@ exports.openFile = function (file) {
  */
 exports.closeFileMainProcess = function (focusedWindow) {
     var code = TemplateLoader.loadTemplate('empty-editor-panel');
-    focusedWindow.webContents.executeJavaScript("document.getElementById('mainWindow').innerHTML = '" + code + "';");
+    focusedWindow.webContents.executeJavaScript('document.getElementById("mainWindow").innerHTML = "' + code + '";');
 }
 
 /**
