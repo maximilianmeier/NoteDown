@@ -24,5 +24,5 @@ exports.loadTemplate = function (templateName, data, extension) {
 
     var template = Handlebars.compile(source);
     var html = template(data);
-    return html;
+    return html.replace(/\r?\n|\r/g, " ");
 }

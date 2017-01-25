@@ -12,11 +12,11 @@ var TemplateLoader = require('./util/template-loader');
 exports.startupSettings = function (focusedWindow) {
     if (!isSettingsShown) {
         var code = TemplateLoader.loadTemplate('settings-panel');
-        focusedWindow.webContents.executeJavaScript("document.getElementsByClassName('hoverSpace')[0].innerHTML = '" + code + "';");
+        focusedWindow.webContents.executeJavaScript('document.getElementsByClassName("hoverSpace")[0].innerHTML = "' + code + '";');
         settings.startUpSettingsPage();
         isSettingsShown = true;
     } else {
-        focusedWindow.webContents.executeJavaScript("document.getElementsByClassName('hoverSpace')[0].innerHTML = ''");
+        focusedWindow.webContents.executeJavaScript('document.getElementsByClassName("hoverSpace")[0].innerHTML = "";');
         settings.tearDownSettingsPage();
         isSettingsShown = false;
     }

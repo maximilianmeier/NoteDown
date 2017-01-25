@@ -1,8 +1,8 @@
 {{#each files}}
-<div id='{{this.file}}' class='fileContainer'>
-    <div class='fileElement'>{{this.file}}</div>
-    <div class='fileDescription'>{{this.stats.size}} B | {{date-fmt stats.mtime}}</div>
-</div>
+    <div id='{{this.file}}' class='fileContainer'>
+        <div class='fileElement'>{{this.file}}</div>
+        <div class='fileDescription'>{{this.stats.size}} B | {{date-fmt stats.mtime}}</div>
+    </div>
 {{else}}
-No files yet!
+    No files yet!
 {{/each}}
