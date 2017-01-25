@@ -16,5 +16,6 @@
 * 13.12.16
  * Notelist now contains information about the files
  
-* 24.01.17
+* 25.01.17
  * Added template loader for handling templates better
+ * Added Handlebars to template loader
