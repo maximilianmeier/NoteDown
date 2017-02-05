@@ -1,6 +1,6 @@
 var $ = require('jquery');
 var markdown = require('marked');
-var ipcRenderer = require('electron').ipcRenderer;
+var { ipcRenderer } = require('electron');
 var TemplateLoader = require('./util/template-loader');
 const ModuleName = "EditorModule";
 
@@ -23,21 +23,13 @@ exports.openFile = function (file) {
         ipcRenderer.sendSync('setCurrentContent', editor.getValue());
     });
 
+    ipcRenderer.on('note:close', (event, message) => {
+        _createNoPanel();
+    });
+
     $(".previewFrame").html(markdown(file));
     _watchInput();
 };
-
-/**
- * Closes current note editor. This is called from the main process!
- *
- * @param focusedWindow Current focused window.
- * @since 0.1.0
- * @author Maximilian Meier
- */
-exports.closeFileMainProcess = function (focusedWindow) {
-    var code = TemplateLoader.loadTemplate('empty-editor-panel');
-    focusedWindow.webContents.executeJavaScript('document.getElementById("mainWindow").innerHTML = "' + code + '";');
-}
 
 /**
  * Initializes new editor frame with preview window.

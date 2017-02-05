@@ -120,14 +120,8 @@ function _startApplication() {
     });
 
     app.on('ready', function () {
-        var mainWindow = new BrowserWindow({
-            'width': Constants.STANDARD_WIDTH,
-            'height': Constants.STANDARD_HEIGHT,
-            'minWidth': Constants.MIN_WIDTH,
-            'minHeight': Constants.MIN_HEIGHT,
-            'useContentSize': true
-        });
-        mainWindow.loadURL(`file://${__dirname}/index.html`);
+        const MainWindow = require('./main-window');
+        MainWindow.loadURL(`file://${__dirname}/index.html`);
     });
 }
 

@@ -4,6 +4,8 @@ const Logger = require('../util/logger');
 const fileManager = require('../file-manager');
 const uiManager = require('../ui-manager');
 const editor = require('../editor');
+const MainWindow = require('../main-window');
+
 
 /**
  * General menu template of the application
@@ -46,7 +48,7 @@ exports.template = [{
         accelerator: 'CmdOrCtrl+W',
         click: function (item, focusedWindow) {
             Logger.info('Closing current Note!');
-            editor.closeFileMainProcess(focusedWindow);
+            MainWindow.webContents.send('note:close');
         }
     }]
 }, {
