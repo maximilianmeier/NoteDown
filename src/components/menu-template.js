@@ -1,9 +1,6 @@
 const electron = require('electron');
 const app = electron.app;
 const Logger = require('../util/logger');
-const fileManager = require('../file-manager');
-const uiManager = require('../ui-manager');
-const editor = require('../editor');
 const MainWindow = require('../main-window');
 
 
@@ -20,7 +17,7 @@ exports.template = [{
         accelerator: 'CmdOrCtrl+N',
         click: function (item, focusedWindow) {
             Logger.info('Creating a new Note!');
-            fileManager.createNewMarkdownFile("test");
+            MainWindow.webContents.send('note:new');
         }
     }, {
         label: 'New Notebook',
@@ -34,7 +31,7 @@ exports.template = [{
         accelerator: 'CmdOrCtrl+S',
         click: function (item, focusedWindow) {
             Logger.info('Saving a Note!');
-            fileManager.saveMarkdownFile();
+            MainWindow.webContents.send('note:save');
         }
     }, {
         label: 'Save Note As',
@@ -164,7 +161,7 @@ exports.appleTemplate = {
         accelerator: 'CmdOrCtrl+,',
         click: function (item, focusedWindow) {
             Logger.info("Opening settings!");
-            uiManager.startupSettings(focusedWindow);
+            MainWindow.webContents.send('window:open:settings');
             Logger.info("NOT YET COMPLETEY IMPLEMENTED");
         }
     }, {

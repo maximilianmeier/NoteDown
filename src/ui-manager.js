@@ -1,6 +1,12 @@
 var settings = require('./settings');
 var isSettingsShown = false;
 var TemplateLoader = require('./util/template-loader');
+var $ = require('jquery');
+var { ipcRenderer } = require('electron');
+
+ipcRenderer.on('window:open:settings', () => {
+    _startupSettings();
+});
 
 /**
  * Initialized settings window.
@@ -9,14 +15,14 @@ var TemplateLoader = require('./util/template-loader');
  * @since 0.1.0
  * @author Maximilian Meier
  */
-exports.startupSettings = function (focusedWindow) {
+function _startupSettings(focusedWindow) {
     if (!isSettingsShown) {
         var code = TemplateLoader.loadTemplate('settings-panel');
-        focusedWindow.webContents.executeJavaScript('document.getElementsByClassName("hoverSpace")[0].innerHTML = "' + code + '";');
+        $(".hoverSpace").html(code);
         settings.startUpSettingsPage();
         isSettingsShown = true;
     } else {
-        focusedWindow.webContents.executeJavaScript('document.getElementsByClassName("hoverSpace")[0].innerHTML = "";');
+        $(".hoverSpace").html("");
         settings.tearDownSettingsPage();
         isSettingsShown = false;
     }
