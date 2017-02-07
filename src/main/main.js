@@ -1,11 +1,11 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const Logger = require('./util/logger');
-const settings = require('./util/settings');
+const Logger = require('./../util/logger');
+const settings = require('./../util/settings');
 const fs = require('fs');
 const Menu = electron.Menu;
-const Constants = require('./util/constants');
+const Constants = require('./../util/constants');
 var testMode = false;
 const ModuleName = "MAIN_MODULE";
 
@@ -119,7 +119,7 @@ function _startApplication() {
     });
 
     app.on('ready', function () {
-        const MainWindow = require('./main-window');
-        MainWindow.loadURL(`file://${__dirname}/index.html`);
+        const MainWindow = require('./../main-window');
+        MainWindow.loadURL(`file://${__dirname}/../index.html`);
     });
 }

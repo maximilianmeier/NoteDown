@@ -1,9 +1,9 @@
 var $ = require('jquery');
 var markdown = require('marked');
 var { ipcRenderer } = require('electron');
-var TemplateLoader = require('./util/template-loader');
+var TemplateLoader = require('./../util/template-loader');
 const ModuleName = "EditorModule";
-var settings = require('./util/settings');
+var settings = require('./../util/settings');
 settings.reload();
 
 

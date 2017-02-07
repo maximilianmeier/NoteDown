@@ -2,7 +2,7 @@
   "name": "NoteDown",
   "version": "0.1.0",
   "description": "NoteDown is a markdown developer notebook",
-  "main": "src/main.js",
+  "main": "src/main/main.js",
   "scripts": {
     "test": "npm start runTests",
     "start": "node-sass ./src/styles/main.scss ./src/styles/main.css && electron ."

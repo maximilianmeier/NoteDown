@@ -1,6 +1,6 @@
 var settings = require('./settings');
 var isSettingsShown = false;
-var TemplateLoader = require('./util/template-loader');
+var TemplateLoader = require('./../util/template-loader');
 var $ = require('jquery');
 var { ipcRenderer } = require('electron');
 

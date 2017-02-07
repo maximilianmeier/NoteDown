@@ -20,7 +20,7 @@ exports.loadTemplate = function (templateName, data, extension) {
     if (!extension) {
         extension = 'hbs';
     }
-    var source = fs.readFileSync(__dirname + '/../templates/' + templateName + '.' + extension, 'utf-8');
+    var source = fs.readFileSync(__dirname + '/../renderer/templates/' + templateName + '.' + extension, 'utf-8');
 
     var template = Handlebars.compile(source);
     var html = template(data);
