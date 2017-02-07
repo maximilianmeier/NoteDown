@@ -3,6 +3,8 @@ var markdown = require('marked');
 var { ipcRenderer } = require('electron');
 var TemplateLoader = require('./util/template-loader');
 const ModuleName = "EditorModule";
+var settings = require('./util/settings');
+settings.reload();
 
 
 /**
@@ -20,7 +22,7 @@ exports.openFile = function (file) {
     editor.session.setMode(new MarkDownMode());
     editor.getSession().on('change', function (e) {
         $(".previewFrame").html(markdown(editor.getValue()));
-        ipcRenderer.sendSync('setCurrentContent', editor.getValue());
+        settings.set('CURRENT_CONTENT', editor.getValue());
     });
 
     ipcRenderer.on('note:close', (event, message) => {
@@ -59,8 +61,8 @@ function _createNoPanel() {
  */
 function _watchInput() {
     $("#editor").bind('input propertychange', function () {
-        var self = this;
-        $(".previewFrame").html(markdown(self.value));
-        ipcRenderer.sendSync('setCurrentContent', self.value);
+        var editor = ace.edit('editor');
+        $(".previewFrame").html(markdown(editor.getValue()));
+        settings.set('CURRENT_CONTENT', editor.getValue());
     });
 }
