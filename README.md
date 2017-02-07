@@ -11,7 +11,7 @@ npm install qunit-cli -g
 ```
 
 ```shell
-npm install electron-prebuilt -g
+npm install electron -g
 ```
 
 ```shell
