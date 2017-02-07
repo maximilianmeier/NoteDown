@@ -2,11 +2,13 @@ var fs = require('fs');
 var Logger = require('./util/logger');
 var fileUtil = require('./util/file-util');
 var Editor = require('./editor');
-var ipcRenderer = require('electron').ipcRenderer;
+var settings = require('./util/settings');
 var $ = require('jquery');
 const ModuleName = "DirectoryModule";
-const filePath = ipcRenderer.sendSync('getStandardFilePath', "");
 var TemplateLoader = require('./util/template-loader');
+var settings = require('./util/settings');
+settings.reload();
+const filePath = settings.get('STANDARD_FILE_PATH');
 
 /**
  * Directory module is responsible for displaying the current file List in the UI and handles the click interactions for opening a new File.
@@ -14,7 +16,6 @@ var TemplateLoader = require('./util/template-loader');
  * @since 0.1.0
  * @author Maximilian Meier
  */
-
 
 fs.watch(filePath, (event, filename) => {
     readAndUpdateFileList();
@@ -25,10 +26,10 @@ $(document).ready(function () {
     $(".fileList").on('click', ".fileContainer", function (event) {
         var fileName = $(this).attr('id');
         Logger.info("Opening File: " + fileName, ModuleName);
-        var file = fileUtil.openFile(ipcRenderer.sendSync('getStandardFilePath', "") + '/' + fileName);
+        var file = fileUtil.openFile(settings.get('STANDARD_FILE_PATH') + '/' + fileName);
         Editor.openFile(file);
-        ipcRenderer.sendSync('setCurrentContent', file);
-        ipcRenderer.sendSync('setCurrentFile', ipcRenderer.sendSync('getStandardFilePath', "") + '/' + fileName);
+        settings.set('CURRENT_CONTENT', file);
+        settings.set('CURRENT_FILE', settings.get('STANDARD_FILE_PATH') + '/' + fileName)
     });
 });
 

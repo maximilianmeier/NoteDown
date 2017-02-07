@@ -2,6 +2,9 @@ var fs = require('fs');
 var electron = require('electron');
 var Constants = require('./constants');
 var app = electron.app;
+if(!app) {
+    app = electron.remote.app;
+}
 var Logger = require('../util/logger');
 const moduleName = "SettingsFile";
 

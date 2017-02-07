@@ -1,8 +1,19 @@
 var fileUtil = require('./util/file-util');
-var dialog = require('electron').dialog;
+var dialog = require('electron').remote.dialog;
 var Logger = require('./util/logger');
-var settings = require('./util/settings');
+var { ipcRenderer } = require('electron');
 var fs = require('fs');
+var settings = require('./util/settings');
+settings.reload();
+
+ipcRenderer.on('note:new', () => {
+    console.log('new!!');
+   _createNewMarkdownFile();
+});
+
+ipcRenderer.on('note:save', () => {
+    _saveMarkdownFile();
+});
 
 /**
  * Handles interactions with the files.
@@ -17,7 +28,7 @@ var fs = require('fs');
  * @since 0.1.0
  * @author Maximilian Meier
  */
-exports.createNewMarkdownFile = function () {
+function _createNewMarkdownFile() {
     dialog.showSaveDialog({
         title: 'Create new file',
         defaultPath: settings.get('STANDARD_FILE_PATH'),
@@ -40,7 +51,7 @@ exports.createNewMarkdownFile = function () {
  * @since 0.1.0
  * @author Maximilian Meier
  */
-exports.saveMarkdownFile = function () {
+function _saveMarkdownFile() {
     var currentFile = settings.get("CURRENT_FILE");
     var currentContent = settings.get("CURRENT_CONTENT");
     fs.writeFileSync(currentFile, currentContent, 'utf-8');

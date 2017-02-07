@@ -4,7 +4,6 @@ const BrowserWindow = electron.BrowserWindow;
 const Logger = require('./util/logger');
 const settings = require('./util/settings');
 const fs = require('fs');
-const ipcMain = electron.ipcMain;
 const Menu = electron.Menu;
 const Constants = require('./util/constants');
 var testMode = false;
@@ -124,18 +123,3 @@ function _startApplication() {
         MainWindow.loadURL(`file://${__dirname}/index.html`);
     });
 }
-
-
-ipcMain.on('setCurrentFile', function (event, arg) {
-    settings.set('CURRENT_FILE', arg);
-    event.returnValue = 'saved';
-});
-
-ipcMain.on('setCurrentContent', function (event, arg) {
-    settings.set('CURRENT_CONTENT', arg);
-    event.returnValue = 'saved';
-});
-
-ipcMain.on('getStandardFilePath', function (event, arg) {
-    event.returnValue = settings.get("STANDARD_FILE_PATH");
-});
