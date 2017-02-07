@@ -1,12 +1,12 @@
 var fs = require('fs');
-var Logger = require('./util/logger');
-var fileUtil = require('./util/file-util');
+var Logger = require('./../util/logger');
+var fileUtil = require('./../util/file-util');
 var Editor = require('./editor');
-var settings = require('./util/settings');
+var settings = require('./../util/settings');
 var $ = require('jquery');
 const ModuleName = "DirectoryModule";
-var TemplateLoader = require('./util/template-loader');
-var settings = require('./util/settings');
+var TemplateLoader = require('./../util/template-loader');
+var settings = require('./../util/settings');
 settings.reload();
 const filePath = settings.get('STANDARD_FILE_PATH');
 

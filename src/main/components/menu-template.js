@@ -1,7 +1,7 @@
 const electron = require('electron');
 const app = electron.app;
-const Logger = require('../util/logger');
-const MainWindow = require('../main-window');
+const Logger = require('../../util/logger');
+const MainWindow = require('../../main-window');
 
 
 /**
