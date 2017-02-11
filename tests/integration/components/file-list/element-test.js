@@ -32,7 +32,7 @@ test('it renders', function (assert) {
 
   this.render(hbs`{{file-list/element file=testFile}}`);
 
-  assert.equal(this.$().text().trim().replace(/(\r\n|\n|\r)/gm, ""), 'Test.md  38 B | 07/02/2017');
+  assert.equal(this.$().text().trim().replace(/(\r\n|\n|\r)/gm, ""), 'Test.md  38 B | ' + this.get('testFile.stats.mtime').toLocaleDateString());
 
   // Template block usage:
   this.render(hbs`
@@ -41,5 +41,5 @@ test('it renders', function (assert) {
     {{/file-list/element}}
   `);
 
-  assert.equal(this.$().text().trim().replace(/(\r\n|\n|\r)/gm, ""), 'Test.md  38 B | 07/02/2017');
+  assert.equal(this.$().text().trim().replace(/(\r\n|\n|\r)/gm, ""), 'Test.md  38 B | ' + this.get('testFile.stats.mtime').toLocaleDateString());
 });
