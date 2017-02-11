@@ -6,7 +6,8 @@ module('Unit | Helper | date fmt');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  let result = dateFmt([42]);
+  var newDate = new Date();
+  let result = dateFmt([newDate]);
   assert.ok(result);
 });
 
