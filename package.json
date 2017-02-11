@@ -1,14 +1,26 @@
 {
   "name": "note-down",
-  "version": "0.0.0",
-  "description": "Small description for note-down goes here",
+  "version": "0.1.0",
+  "description": "NoteDown is a markdown developer notebook",
   "license": "MIT",
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ceany/NoteDown.git"
+  },
+  "keywords": [
+    "markdown",
+    "notebook",
+    "developer"
+  ],
+  "author": "Maximilian Meier",
+  "bugs": {
+    "url": "https://github.com/Ceany/NoteDown/issues"
+  },
+  "homepage": "https://github.com/Ceany/NoteDown#readme",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
