@@ -1,8 +1,8 @@
 var fileUtil = require('./../util/file-util');
 var dialog = require('electron').remote.dialog;
-var Logger = require('./../util/logger');
 var { ipcRenderer } = require('electron');
 var fs = require('fs');
+var Logger = require('./../util/logger');
 var settings = require('./../util/settings');
 settings.reload();
 

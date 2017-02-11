@@ -1,4 +1,6 @@
 {{#if file}}
+  <div class="headline">{{file.id}}<div class="btn-close" {{action 'closeFile'}}>Close</div></div>
+
   <div class='previewPane'>
     <div class='previewHeader headline'>Preview</div>
     <div class='previewFrame'>{{{md2html file.noteContent}}}</div>

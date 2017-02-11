@@ -12,7 +12,7 @@ test('it renders', function (assert) {
 
   this.render(hbs`{{note-editor}}`);
 
-  assert.equal(this.$().text().trim().replace(/(\r\n|\n|\r)/gm, ""), 'Preview    Editor');
+  assert.equal(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
@@ -21,5 +21,5 @@ test('it renders', function (assert) {
     {{/note-editor}}
   `);
 
-  assert.equal(this.$().text().trim().replace(/(\r\n|\n|\r)/gm, ""), 'Preview    Editor');
+  assert.equal(this.$().text().trim(), '');
 });

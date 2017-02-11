@@ -21,6 +21,9 @@ export default Ember.Controller.extend({
         file.save();
         _this.get('target.router').refresh();
       });
+    },
+    closeFile() {
+      this.set('currentFile', null);
     }
   }
 
