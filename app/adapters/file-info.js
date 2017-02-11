@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 const fs = require('fs');
+/*jshint unused:false*/
 
 export default DS.JSONAPIAdapter.extend({
   filePath: '',

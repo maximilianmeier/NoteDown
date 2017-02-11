@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+/*jshint unused:false*/
 
 export default DS.JSONAPISerializer.extend({
 
