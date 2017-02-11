@@ -1,15 +1,20 @@
 <div class="container">
   <div class="directoryPane">
     <div class="fileHeader headline">
-      {{#link-to 'index'}} 'Files'{{/link-to}}
+      Files
     </div>
     <div class="fileList">
-      {{file-list files=model.files}}
-
+      {{file-list files=model.files currentFile=currentFile}}
     </div>
   </div>
   <div class="mainWindowPane editor" id="mainWindow">
-    {{outlet}}
+    {{#if currentFile}}
+      {{note-editor file=currentFile}}
+    {{else}}
+      <div class="headline">
+        Please open a file
+      </div>
+    {{/if}}
 
   </div>
 </div>
