@@ -1,48 +1,52 @@
-# NoteDown
+# note-down
 
-## Prerequisite
-Node.js is required!
+This README outlines the details of collaborating on this Ember application.
+A short introduction of this app could easily go here.
 
-The npm "qunit-cli" is also required.
+## Prerequisites
 
+You will need the following things properly installed on your computer.
 
-```shell
-npm install qunit-cli -g
-```
+* [Git](https://git-scm.com/)
+* [Node.js](https://nodejs.org/) (with NPM)
+* [Bower](https://bower.io/)
+* [Ember CLI](https://ember-cli.com/)
+* [PhantomJS](http://phantomjs.org/)
 
-```shell
-npm install electron -g
-```
+## Installation
 
-```shell
-npm install node-sass -g
-```
+* `git clone <repository-url>` this repository
+* `cd note-down`
+* `npm install`
+* `bower install`
 
-## Install
+## Running / Development
 
-Run the following command to install necessary dependencies.
+* `ember serve`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
-```shell
-npm install
-```
+### Code Generators
 
-## Run
+Make use of the many generators for code, try `ember help generate` for more details
 
-Run the following command:
+### Running Tests
 
-```shell
-npm start
-```
+* `ember test`
+* `ember test --server`
 
-## Test
-Run the following command for a visual version of the tests:
+### Building
 
-```shell
-npm test
-```
+* `ember build` (development)
+* `ember build --environment production` (production)
 
-Run the following command to run the test on the command line:
+### Deploying
 
-```shell
-qunit-cli ./test/tests.js
-```
+Specify what it takes to deploy your app.
+
+## Further Reading / Useful Links
+
+* [ember.js](http://emberjs.com/)
+* [ember-cli](https://ember-cli.com/)
+* Development Browser Extensions
+  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)

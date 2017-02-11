@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="directoryPane">
+    <div class="fileHeader headline">
+      {{#link-to 'index'}} 'Files'{{/link-to}}
+    </div>
+    <div class="fileList">
+      {{file-list files=model.files}}
+
+    </div>
+  </div>
+  <div class="mainWindowPane editor" id="mainWindow">
+    {{outlet}}
+
+  </div>
+</div>
+<div class="hoverSpace">
+
+</div>
+

@@ -1,0 +1,8 @@
+{{#each files as |file|}}
+  {{#link-to 'editor' tagName='div' id='{{file.file}}' class='fileContainer'}}
+    <div class='fileElement'>{{file.file}}</div>
+    <div class='fileDescription'>{{file.stats.size}} B | {{date-fmt file.stats.mtime}}</div>
+  {{/link-to}}
+{{else}}
+  No files yet!
+{{/each}}
