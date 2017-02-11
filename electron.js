@@ -4,7 +4,7 @@
 const electron             = require('electron');
 const path                 = require('path');
 const app                  = electron.app;
-const BrowserWindow        = electron.BrowserWindow;
+const Menu                 = electron.Menu;
 const dirname              = __dirname || path.resolve(path.dirname());
 const emberAppLocation     = `file://${dirname}/dist/index.html`;
 
@@ -26,11 +26,22 @@ app.on('window-all-closed', function onWindowAllClosed() {
     }
 });
 
+app.once('ready', function onReady() {
+  const menuTemplate = require('./electron/menu-template');
+
+  var template = menuTemplate.template;
+
+  if (process.platform == 'darwin') {
+    template.unshift(menuTemplate.appleTemplate);
+    template[3].submenu.push(menuTemplate.appleWindowTemplate);
+  }
+
+  var menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+});
+
 app.on('ready', function onReady() {
-    mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 800
-    });
+    mainWindow = require('./electron/main-window');
 
     delete mainWindow.module;
 

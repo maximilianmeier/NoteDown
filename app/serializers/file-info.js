@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 /*jshint unused:false*/
 
-export default DS.JSONAPISerializer.extend({
+export default DS.Serializer.extend({
   serialize(snapshot, options) {
     return true;
   },
