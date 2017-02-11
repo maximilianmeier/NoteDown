@@ -5,6 +5,11 @@ node_js:
 
 sudo: false
 
+addons:
+  apt:
+    packages:
+      - xvfb
+
 cache:
   directories:
     - $HOME/.npm
@@ -19,6 +24,8 @@ before_install:
 install:
   - npm install
   - bower install
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 
 script:
   - ember electron:test
