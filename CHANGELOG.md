@@ -19,3 +19,6 @@
 * 25.01.17
  * Added template loader for handling templates better
  * Added Handlebars to template loader
+ 
+* 12.02.17
+ * App is now based on ember
