@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   currentFile: null,
 
+  toast: Ember.inject.service(),
+
   hasChanges: false,
 
   currentFileContent: Ember.computed('currentFile', {
@@ -16,11 +18,27 @@ export default Ember.Controller.extend({
   actions: {
     saveCurrentFile() {
       let _this = this;
+      let toast = this.get('toast');
       let currentFileContentId = this.get('currentFileContent.id');
       this.store.findRecord('file', currentFileContentId).then(function (file) {
         file.set('noteContent', _this.get('currentFileContent.noteContent'));
         file.save();
         _this.set('hasChanges', false);
+        toast.success('Note Saved', 'Note was saved successfully.', {
+          "closeButton": false,
+          "newestOnTop": false,
+          "positionClass": "toast-bottom-center",
+          "preventDuplicates": true,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        });
         _this.get('target.router').refresh();
       });
     },

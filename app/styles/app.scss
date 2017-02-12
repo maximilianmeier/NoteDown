@@ -2,6 +2,10 @@ body {
   margin: 0;
   font-family: 'Helvetica Neue', 'Open Sans', Helvetica, Arial, sans-serif;
 
+  .white-icon {
+    fill: #FFFFFF;
+  }
+
   .container {
     position: absolute;
     left: 0;
@@ -26,7 +30,7 @@ body {
     }
     .btn-close {
       position: absolute;
-      top: 20px;
+      top: 15px;
       right: 20px;
       cursor: pointer;
     }

@@ -1,5 +1,6 @@
 {
   "name": "note-down",
   "dependencies": {
+    "toastr": "^2.1.3"
   }
 }
