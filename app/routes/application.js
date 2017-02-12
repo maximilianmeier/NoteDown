@@ -1,5 +1,6 @@
 import Ember from 'ember';
 const { ipcRenderer } = require ('electron');
+const fs = require('fs');
 
 export default Ember.Route.extend({
   fileUtil: Ember.inject.service('file-util'),
@@ -9,12 +10,18 @@ export default Ember.Route.extend({
   },
 
   afterModel() {
+    let filePath = process.env.HOME + '/Documents/NoteDown/';
+    let _this = this;
     ipcRenderer.on('note:save', () => {
-      this.controllerFor('application').send('saveCurrentFile');
+      _this.controllerFor('application').send('saveCurrentFile');
     });
 
     ipcRenderer.on('note:new', () => {
-      this.get('fileUtil').createNewMarkdownFile();
+      _this.get('fileUtil').createNewMarkdownFile();
+    });
+
+    fs.watch(filePath, () => {
+      _this.refresh();
     });
   }
 });

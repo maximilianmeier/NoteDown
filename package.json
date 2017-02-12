@@ -68,9 +68,10 @@
     "WHAT IS THIS?": "Please see the README.md",
     "copy-files": [
       "electron.js",
-      "package.json"
+      "package.json",
+      "electron/"
     ],
-    "name": null,
+    "name": "NoteDown",
     "platform": null,
     "arch": null,
     "version": null,
