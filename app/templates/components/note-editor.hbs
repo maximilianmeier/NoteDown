@@ -1,0 +1,14 @@
+{{#if file}}
+  <div class="headline">{{file.id}}<div class="btn-close" {{action 'closeFile'}}>Close</div></div>
+
+  <div class='previewPane'>
+    <div class='previewHeader headline'>Preview</div>
+    <div class='previewFrame'>{{{md2html file.noteContent}}}</div>
+  </div>
+  <div class='editorPane'>
+    <div class='editorHeader headline'>Editor</div>
+    <div class='editorFrame'>
+      {{ember-ace value=file.noteContent update=(action 'valueUpdated')}}
+    </div>
+  </div>
+{{/if}}

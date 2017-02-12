@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="directoryPane">
+    <div class="fileHeader headline">
+      Files
+    </div>
+    <div class="fileList">
+      {{file-list files=model currentFile=currentFile}}
+    </div>
+  </div>
+  <div class="mainWindowPane editor" id="mainWindow">
+    {{#if currentFile}}
+      {{note-editor file=currentFileContent closeFile='closeFile'}}
+    {{else}}
+      <div class="headline">
+        Please open a file
+      </div>
+    {{/if}}
+
+  </div>
+</div>
+<div class="hoverSpace">
+
+</div>
+

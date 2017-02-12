@@ -1,12 +1,31 @@
+---
 language: node_js
 node_js:
-  - "0.12"
+  - "4"
 
 sudo: false
 
+addons:
+  apt:
+    packages:
+      - xvfb
+
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.cache # includes bowers cache
+
+before_install:
+  - npm config set spin false
+  - npm install -g bower phantomjs-prebuilt
+  - bower --version
+  - phantomjs --version
+
 install:
-  - npm install -g qunit-cli
   - npm install
+  - bower install
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 
 script:
-  - qunit-cli ./test/tests.js
+  - ember electron:test
