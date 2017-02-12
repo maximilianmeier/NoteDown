@@ -12,6 +12,11 @@ export default Ember.Route.extend({
   afterModel() {
     let filePath = process.env.HOME + '/Documents/NoteDown/';
     let _this = this;
+
+    ipcRenderer.on('note:close', () => {
+      _this.controllerFor('application').send('closeFile');
+    });
+
     ipcRenderer.on('note:save', () => {
       _this.controllerFor('application').send('saveCurrentFile');
     });

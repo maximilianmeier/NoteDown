@@ -10,7 +10,7 @@ export default DS.Adapter.extend({
   },
 
   updateRecord(store, type, snapshot) {
-    var data = this.serialize(snapshot, { includeId: true });
+    var data = this.serialize(snapshot, {includeId: true});
     let filePath = process.env.HOME + '/Documents/NoteDown/' + data.id;
     fs.writeFileSync(filePath, data.noteContent, "utf-8");
     return data;

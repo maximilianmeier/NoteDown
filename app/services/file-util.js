@@ -11,7 +11,8 @@ export default Ember.Service.extend({
       this.set('isDialogShown', true);
       dialog.showSaveDialog({
         title: 'Create new file',
-        defaultPath: filePath,
+        defaultPath: filePath + '/Note',
+        buttonLabel: 'Create',
         filters: [{
           name: 'MarkDown',
           extensions: ['md']

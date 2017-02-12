@@ -9,7 +9,7 @@
   </div>
   <div class="mainWindowPane editor" id="mainWindow">
     {{#if currentFile}}
-      {{note-editor file=currentFileContent closeFile='closeFile'}}
+      {{note-editor file=currentFileContent closeFile='closeFile' hasChanges=hasChanges}}
     {{else}}
       <div class="headline">
         Please open a file
