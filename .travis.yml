@@ -29,3 +29,10 @@ install:
 
 script:
   - ember electron:test
+
+jobs:
+  include:
+    - stage: test
+      script: ember electron:test
+    - stage: deploy
+      script: ember electron:test
